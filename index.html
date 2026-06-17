@@ -27,7 +27,7 @@
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
   .eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600}
   h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.05;letter-spacing:-.02em}
-  em{font-style:italic;color:var(--gold);font-family:var(--serif)}
+  em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:700}
   .btn{display:inline-flex;align-items:center;gap:.55rem;font-weight:700;font-size:.92rem;padding:.85rem 1.5rem;border-radius:999px;transition:.2s}
   .btn-dark{background:var(--ink);color:#fff}
   .btn-dark:hover{background:#16203f}
@@ -61,7 +61,7 @@
   .stat b{font-family:var(--serif);font-size:2rem;font-weight:500;display:block}
   .stat span{font-size:.82rem;color:var(--s500)}
   .hero-card{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(10,17,40,.4)}
-  .hero-card img{width:100%;height:480px;object-fit:cover}
+  .hero-card img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
   .rec{position:absolute;top:18px;left:18px;display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.5);color:#fff;font-size:.72rem;font-weight:600;letter-spacing:.1em;padding:.4rem .8rem;border-radius:999px}
   .rec i{width:8px;height:8px;border-radius:50%;background:var(--red);display:inline-block;animation:blink 1.4s infinite}
   @keyframes blink{50%{opacity:.3}}
@@ -205,7 +205,7 @@
     .burger{display:grid;place-items:center;width:42px;height:42px}
     .feat-grid,.port-grid,.price-grid,.steps,.quotes,.foot-grid{grid-template-columns:1fr}
     .stats{gap:26px}
-    .hero-card img{height:340px}
+    .hero-card img{aspect-ratio:4/5}
   }
 </style>
 </head>
@@ -355,7 +355,7 @@
         </ul>
         <button class="btn btn-ghost" onclick="go('contatti')">Inizia</button>
       </div>
-      <div class="plan dark">
+      <div class="plan">
         <span class="badge">Più scelto</span>
         <p class="pname">Pro</p>
         <p class="pdesc">Il preferito da medici estetici e dentisti</p>
@@ -368,9 +368,9 @@
           <li>{check} Revisioni illimitate · consegna 7gg</li>
           <li>{check} Strategy call mensile</li>
         </ul>
-        <button class="btn btn-gold" onclick="go('contatti')">Più scelto</button>
+        <button class="btn btn-dark" onclick="go('contatti')">Più scelto</button>
       </div>
-      <div class="plan">
+      <div class="plan dark">
         <p class="pname">Elite</p>
         <p class="pdesc">Brand film, spot TV e campagne integrate</p>
         <p class="pcost">Su misura</p><p class="punit">&nbsp;</p>
@@ -382,7 +382,7 @@
           <li>{check} Licensing musicale custom</li>
           <li>{check} Distribuzione &amp; media plan</li>
         </ul>
-        <button class="btn btn-ghost" onclick="go('contatti')">Parla con il direttore</button>
+        <button class="btn btn-gold" onclick="go('contatti')">Parla con il direttore</button>
       </div>
     </div>
     <p class="price-note">IVA esclusa · Pagamento 50/50 · Contratto NDA standard incluso</p>
