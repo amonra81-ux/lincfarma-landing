@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LincFarma — Video editing per medici estetici e chirurghi</title>
+<meta name="description" content="Studio di post-produzione video dedicato a medici estetici, chirurghi e cliniche d'eccellenza. Narrazioni visive che convertono pazienti." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@300,400,500,700,800,900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#fafafa; --ink:#0a1128; --gold:#c5a880;
+    --s600:#475569; --s500:#64748b; --s400:#94a3b8; --s300:#cbd5e1; --s200:#e2e8f0; --s100:#f1f5f9;
+    --red:#ef4444; --white:#fff;
+    --serif:"Cabinet Grotesk",Manrope,ui-sans-serif,system-ui,sans-serif;
+    --sans:Manrope,ui-sans-serif,system-ui,sans-serif;
+    --maxw:1240px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  h1,h2,h3{font-family:var(--serif);font-weight:800;line-height:1.05;letter-spacing:-.02em}
+  em{font-style:italic;color:var(--gold);font-family:var(--serif)}
+  .btn{display:inline-flex;align-items:center;gap:.55rem;font-weight:700;font-size:.92rem;padding:.85rem 1.5rem;border-radius:999px;transition:.2s}
+  .btn-dark{background:var(--ink);color:#fff}
+  .btn-dark:hover{background:#16203f}
+  .btn-ghost{border:1px solid var(--s300);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--ink)}
+  .btn-gold{background:var(--gold);color:var(--ink)}
+  .btn-gold:hover{filter:brightness(1.06)}
+  section{padding:96px 0}
+  .sec-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:56px}
+  .sec-head h2{font-size:clamp(2rem,4vw,3.1rem)}
+  .sec-head p{color:var(--s500);font-size:1.02rem;max-width:46ch}
+  .ico{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+  /* HEADER */
+  header{position:sticky;top:0;z-index:50;background:rgba(250,250,250,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--s200)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .logo{font-family:var(--serif);font-weight:800;letter-spacing:.04em;font-size:1.05rem}
+  .logo b{color:var(--gold)}
+  nav.menu{display:flex;gap:30px}
+  nav.menu button{font-size:.9rem;font-weight:600;color:var(--s600);transition:.2s}
+  nav.menu button:hover{color:var(--ink)}
+  .burger{display:none}
+
+  /* HERO */
+  .hero{padding:72px 0 60px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero h1{font-size:clamp(2.6rem,5.2vw,4.4rem);margin:18px 0 22px}
+  .hero p.lead{color:var(--s600);font-size:1.1rem;max-width:48ch;margin-bottom:30px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:46px}
+  .stats{display:flex;gap:44px}
+  .stat b{font-family:var(--serif);font-size:2rem;font-weight:800;display:block}
+  .stat span{font-size:.82rem;color:var(--s500)}
+  .hero-card{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(10,17,40,.4)}
+  .hero-card img{width:100%;height:480px;object-fit:cover}
+  .rec{position:absolute;top:18px;left:18px;display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.5);color:#fff;font-size:.72rem;font-weight:600;letter-spacing:.1em;padding:.4rem .8rem;border-radius:999px}
+  .rec i{width:8px;height:8px;border-radius:50%;background:var(--red);display:inline-block;animation:blink 1.4s infinite}
+  @keyframes blink{50%{opacity:.3}}
+  .hero-card .overlay{position:absolute;left:0;right:0;bottom:0;padding:22px;display:flex;justify-content:space-between;align-items:flex-end;background:linear-gradient(transparent,rgba(0,0,0,.55))}
+  .hero-card .overlay p{color:rgba(255,255,255,.8);font-size:.78rem}
+  .hero-card .overlay p b{color:#fff;display:block;font-size:.92rem}
+  .play{width:52px;height:52px;border-radius:50%;background:var(--gold);display:grid;place-items:center;color:var(--ink)}
+  .cert{margin-top:18px;padding:16px 18px;background:#fff;border:1px solid var(--s200);border-radius:14px}
+  .cert p:first-child{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:4px}
+  .cert p:last-child{font-size:.86rem;color:var(--s500)}
+
+  /* MARQUEE */
+  .marquee{border-block:1px solid var(--s200);background:#fff;padding:22px 0;overflow:hidden}
+  .marquee .track{display:flex;gap:48px;width:max-content;animation:scroll 26s linear infinite}
+  .marquee span{font-family:var(--serif);font-weight:700;font-size:1.4rem;color:var(--s300);white-space:nowrap;display:flex;align-items:center;gap:48px}
+  .marquee span::after{content:"·";color:var(--gold)}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* FEATURES */
+  .feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .feat{position:relative;padding:30px 26px;border-radius:16px;background:#fff;border:1px solid var(--s200);min-height:230px}
+  .feat.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .feat .fi{width:44px;height:44px;border-radius:12px;background:var(--s100);display:grid;place-items:center;color:var(--gold);margin-bottom:20px}
+  .feat.dark .fi{background:rgba(255,255,255,.08)}
+  .feat h3{font-size:1.18rem;margin-bottom:10px}
+  .feat p{font-size:.9rem;color:var(--s500)}
+  .feat.dark p{color:var(--s300)}
+  .feat .num{position:absolute;right:22px;bottom:18px;font-family:var(--serif);font-weight:800;color:var(--s200);font-size:1rem}
+  .feat.dark .num{color:rgba(255,255,255,.18)}
+
+  /* PORTFOLIO */
+  .port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{position:relative;border-radius:16px;overflow:hidden;cursor:pointer;border:1px solid var(--s200)}
+  .card img{width:100%;height:230px;object-fit:cover;transition:.4s}
+  .card:hover img{transform:scale(1.05)}
+  .card .tag{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.92);font-size:.72rem;font-weight:600;padding:.35rem .7rem;border-radius:999px}
+  .card .meta{display:flex;justify-content:space-between;align-items:center;padding:18px}
+  .card h3{font-size:1.02rem;font-weight:700;font-family:var(--sans)}
+  .card .arr{color:var(--gold)}
+  .port-foot{margin-top:42px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
+  .port-foot p{color:var(--s500)}
+
+  /* PRICING */
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+  .plan{position:relative;background:#fff;border:1px solid var(--s200);border-radius:18px;padding:34px 30px;display:flex;flex-direction:column}
+  .plan.dark{background:var(--ink);color:#fff;border-color:var(--ink);transform:translateY(-12px)}
+  .plan .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--ink);font-size:.72rem;font-weight:700;padding:.35rem .9rem;border-radius:999px}
+  .plan .pname{font-family:var(--serif);font-weight:800;font-size:1.5rem}
+  .plan .pdesc{font-size:.88rem;color:var(--s500);margin:8px 0 22px}
+  .plan.dark .pdesc{color:var(--s300)}
+  .plan .pcost{font-family:var(--serif);font-weight:800;font-size:2.4rem;margin-bottom:2px}
+  .plan .punit{font-size:.82rem;color:var(--s500);margin-bottom:24px}
+  .plan.dark .punit{color:var(--s300)}
+  .plan ul{list-style:none;display:flex;flex-direction:column;gap:13px;margin-bottom:28px;flex:1}
+  .plan li{display:flex;gap:10px;font-size:.9rem;align-items:flex-start}
+  .plan li svg{color:var(--gold);flex-shrink:0;margin-top:2px}
+  .plan .btn{justify-content:center;width:100%}
+  .price-note{text-align:center;margin-top:34px;font-size:.84rem;color:var(--s400);letter-spacing:.04em}
+
+  /* PROCESS */
+  .process{background:var(--ink);color:#fff}
+  .process .eyebrow{color:var(--gold)}
+  .process .sec-head p{color:var(--s300)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+  .step .sn{font-family:var(--serif);font-weight:800;font-size:2.6rem;color:var(--gold);margin-bottom:16px}
+  .step h3{font-size:1.18rem;margin-bottom:10px}
+  .step p{font-size:.9rem;color:var(--s300)}
+  .proc-foot{margin-top:54px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;border-top:1px solid rgba(255,255,255,.12);padding-top:30px}
+  .proc-foot p{color:var(--s300);max-width:50ch}
+
+  /* TESTIMONIALS */
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .quote{background:#fff;border:1px solid var(--s200);border-radius:16px;padding:30px}
+  .quote .qm{font-family:var(--serif);font-size:2.4rem;color:var(--gold);line-height:.6}
+  .quote blockquote{font-size:1rem;color:var(--s600);margin:18px 0 22px}
+  .quote .who{display:flex;align-items:center;gap:12px}
+  .quote .who img{width:46px;height:46px;border-radius:50%;object-fit:cover}
+  .quote .who b{display:block;font-size:.92rem}
+  .quote .who span{font-size:.8rem;color:var(--s500)}
+
+  /* FAQ */
+  .faq-head{margin-bottom:48px}
+  .faq-head h2{font-size:clamp(2rem,4vw,3.1rem);margin:14px 0}
+  .faq-head p{color:var(--s500);max-width:60ch}
+  .faq-item{border-bottom:1px solid var(--s200)}
+  .faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;text-align:left;font-family:var(--serif);font-weight:700;font-size:1.18rem}
+  .faq-q svg{flex-shrink:0;transition:.3s;color:var(--gold)}
+  .faq-item.open .faq-q svg{transform:rotate(45deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+  .faq-a p{padding:0 0 24px;color:var(--s500);max-width:70ch}
+
+  /* CONTACT */
+  .contact-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px}
+  .contact h2{font-size:clamp(2rem,4vw,3.1rem);margin:14px 0 18px}
+  .contact .intro{color:var(--s500);margin-bottom:30px;max-width:46ch}
+  .clist{list-style:none;display:flex;flex-direction:column;gap:16px;margin-bottom:34px}
+  .clist li{display:flex;align-items:center;gap:12px;font-size:.96rem}
+  .clist svg{color:var(--gold)}
+  .avail{padding:20px;background:var(--ink);color:#fff;border-radius:14px}
+  .avail p:first-child{color:var(--gold);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:4px}
+  .avail p:last-child{font-size:.9rem;color:var(--s300)}
+  form{background:#fff;border:1px solid var(--s200);border-radius:18px;padding:32px;display:grid;gap:18px}
+  .field label{display:block;font-size:.82rem;font-weight:600;color:var(--s600);margin-bottom:6px}
+  .field input,.field textarea,.field select{width:100%;padding:.8rem .9rem;border:1px solid var(--s200);border-radius:10px;font-family:inherit;font-size:.94rem;background:var(--bg);color:var(--ink)}
+  .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--gold)}
+  .field textarea{resize:vertical;min-height:96px}
+  form .priv{font-size:.78rem;color:var(--s400)}
+  form .btn{justify-content:center}
+  .form-ok{display:none;background:#f1f7f1;border:1px solid #cfe6cf;color:#2c6b2c;padding:14px;border-radius:10px;font-size:.9rem;font-weight:600}
+
+  /* FOOTER */
+  footer{background:var(--ink);color:#fff;padding:72px 0 30px}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:40px}
+  .foot-brand .logo{color:#fff;margin-bottom:14px;display:inline-block}
+  .foot-brand h3{font-size:1.4rem;margin-bottom:12px}
+  .foot-brand p{color:var(--s300);font-size:.9rem;max-width:42ch;margin-bottom:22px}
+  .news p{font-size:.82rem;color:var(--s400);margin-bottom:8px}
+  .news .row{display:flex;gap:8px;max-width:320px}
+  .news input{flex:1;padding:.7rem .8rem;border-radius:8px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#fff;font-family:inherit;font-size:.85rem}
+  .news input::placeholder{color:var(--s400)}
+  .news button{background:var(--gold);color:var(--ink);font-weight:700;padding:.7rem 1.1rem;border-radius:8px;font-size:.85rem}
+  .foot-col p.t{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--s400);margin-bottom:16px}
+  .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:11px;font-size:.9rem;color:var(--s300)}
+  .foot-col ul a:hover{color:#fff}
+  .social{display:flex;gap:12px;margin-top:18px}
+  .social a{width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,.06);display:grid;place-items:center;color:var(--s300);transition:.2s}
+  .social a:hover{background:var(--gold);color:var(--ink)}
+  .foot-bottom{margin-top:50px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:.82rem;color:var(--s400)}
+  .foot-bottom .links{display:flex;gap:20px}
+
+  /* RESPONSIVE */
+  @media(max-width:980px){
+    .hero-grid,.contact-grid,.sec-head{grid-template-columns:1fr;gap:34px}
+    .feat-grid,.port-grid,.price-grid,.steps,.quotes{grid-template-columns:repeat(2,1fr)}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .plan.dark{transform:none}
+  }
+  @media(max-width:640px){
+    section{padding:64px 0}
+    nav.menu{display:none}
+    .burger{display:grid;place-items:center;width:42px;height:42px}
+    .feat-grid,.port-grid,.price-grid,.steps,.quotes,.foot-grid{grid-template-columns:1fr}
+    .stats{gap:26px}
+    .hero-card img{height:340px}
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="wrap nav">
+    <button class="logo" onclick="scrollTo({top:0,behavior:'smooth'})">Linc<b>Farma</b></button>
+    <nav class="menu">
+      <button onclick="go('studio')">Studio</button>
+      <button onclick="go('lavori')">Lavori</button>
+      <button onclick="go('pacchetti')">Pacchetti</button>
+      <button onclick="go('processo')">Processo</button>
+      <button onclick="go('contatti')">Contatti</button>
+    </nav>
+    <button class="btn btn-dark" onclick="go('contatti')">Prenota consulto</button>
+    <button class="burger" onclick="go('contatti')" aria-label="Menu">
+      <svg class="ico" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Video editing · Medicina estetica · Chirurgia</p>
+      <h1>Il bisturi è tuo.<br>Il taglio cinematografico<br><em>è il nostro.</em></h1>
+      <p class="lead">Studio di post-produzione dedicato a medici estetici, chirurghi e cliniche d'eccellenza. Trasformiamo le tue procedure in narrazioni visive che convertono pazienti, non semplici clip.</p>
+      <div class="hero-cta">
+        <button class="btn btn-dark" onclick="go('pacchetti')">Vedi i pacchetti
+          <svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <button class="btn btn-ghost" onclick="go('lavori')">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/></svg>Guarda lo showreel</button>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>47+</b><span>Cliniche servite</span></div>
+        <div class="stat"><b>1.2k</b><span>Video consegnati</span></div>
+        <div class="stat"><b>+312%</b><span>Engagement medio</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="hero-card">
+        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1400&auto=format&fit=crop" alt="Cinematic surgical editing" />
+        <div class="rec"><i></i>REC · Showreel 2026</div>
+        <div class="overlay">
+          <p>Selezione<b>04 cliniche · 03 paesi</b></p>
+          <button class="play" aria-label="Play showreel">
+            <svg class="ico" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/></svg></button>
+        </div>
+      </div>
+      <div class="cert">
+        <p>Certificazione</p>
+        <p>Protocollo privacy paziente conforme GDPR &amp; deontologia medica.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="track">
+    <span>Medicina Estetica Chirurgia Plastica Odontoiatria Dermatologia Ginecologia Tricologia Ortopedia Medicina Rigenerativa</span>
+    <span>Medicina Estetica Chirurgia Plastica Odontoiatria Dermatologia Ginecologia Tricologia Ortopedia Medicina Rigenerativa</span>
+  </div>
+</div>
+
+<!-- STUDIO -->
+<section id="studio">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">— 01 / Studio</p>
+        <h2>Perché le cliniche più esigenti scelgono <em>noi</em>.</h2>
+      </div>
+      <p>Non siamo videomaker che hanno scoperto il medicale. Siamo un team dedicato esclusivamente a chi opera nel settore salute. Ogni frame è pensato per costruire fiducia, autorevolezza e prenotazioni.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat dark">
+        <div class="fi"><svg class="ico" viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg></div>
+        <h3>Specializzati nel medicale</h3>
+        <p>Conosciamo il linguaggio, la deontologia e le sensibilità del settore. Niente cliché da agency generalista.</p>
+        <span class="num">01</span>
+      </div>
+      <div class="feat">
+        <div class="fi"><svg class="ico" viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></div>
+        <h3>Privacy del paziente</h3>
+        <p>Workflow conforme GDPR. Consensi, blur dinamico, anonimizzazione.</p>
+        <span class="num">02</span>
+      </div>
+      <div class="feat">
+        <div class="fi"><svg class="ico" viewBox="0 0 24 24"><path d="M2 6h20v12H2z"/><path d="M8 6v12M16 6v12M2 10h6M16 10h6M2 14h6M16 14h6"/></svg></div>
+        <h3>Estetica cinematografica</h3>
+        <p>Color grading premium, sound design originale, ritmo editoriale.</p>
+        <span class="num">03</span>
+      </div>
+      <div class="feat">
+        <div class="fi"><svg class="ico" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 7-7"/><path d="M21 8v5h-5"/></svg></div>
+        <h3>Conversione misurabile</h3>
+        <p>Format pensati per prenotazioni, non per like. KPI dichiarati.</p>
+        <span class="num">04</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAVORI -->
+<section id="lavori" style="background:#fff;border-block:1px solid var(--s200)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">— 02 / Selezione</p>
+        <h2>Lavori recenti, <em>senza filtri</em>.</h2>
+      </div>
+      <p>Una selezione di campagne, brand film e serie educational per cliniche e professionisti che misurano il ROI sulle prenotazioni — non sui mi piace.</p>
+    </div>
+    <div class="port-grid" id="port"></div>
+    <div class="port-foot">
+      <p>Vuoi vedere il portfolio completo con risultati reali?</p>
+      <button class="btn btn-dark" onclick="go('contatti')">Richiedi accesso →</button>
+    </div>
+  </div>
+</section>
+
+<!-- PACCHETTI -->
+<section id="pacchetti">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">— 03 / Pacchetti</p>
+        <h2>Tre formati. <em>Zero compromessi</em>.</h2>
+      </div>
+      <p>Pacchetti pensati per la stagionalità clinica. Tutti includono brief strategico, licensing musicale safe e consegna in formati ottimizzati per Instagram, TikTok, YouTube e advertising.</p>
+    </div>
+    <div class="price-grid">
+      <div class="plan">
+        <p class="pname">Starter</p>
+        <p class="pdesc">Per chi inizia a strutturare la presenza video</p>
+        <p class="pcost">€890</p><p class="punit">/ progetto</p>
+        <ul>
+          <li>{check} 1 Reel verticale (fino a 60s)</li>
+          <li>{check} 2 short orizzontali cutdown</li>
+          <li>{check} Color grading &amp; sound design</li>
+          <li>{check} 1 round di revisioni</li>
+          <li>{check} Consegna in 5 giorni</li>
+        </ul>
+        <button class="btn btn-ghost" onclick="go('contatti')">Inizia</button>
+      </div>
+      <div class="plan dark">
+        <span class="badge">Più scelto</span>
+        <p class="pname">Pro</p>
+        <p class="pdesc">Il preferito da medici estetici e dentisti</p>
+        <p class="pcost">€2.490</p><p class="punit">/ mese</p>
+        <ul>
+          <li>{check} 8 Reel + 4 short cutdown</li>
+          <li>{check} Sottotitoli editoriali animati</li>
+          <li>{check} Color grading cinematografico</li>
+          <li>{check} Music supervision premium</li>
+          <li>{check} Revisioni illimitate · consegna 7gg</li>
+          <li>{check} Strategy call mensile</li>
+        </ul>
+        <button class="btn btn-gold" onclick="go('contatti')">Più scelto</button>
+      </div>
+      <div class="plan">
+        <p class="pname">Elite</p>
+        <p class="pdesc">Brand film, spot TV e campagne integrate</p>
+        <p class="pcost">Su misura</p><p class="punit">&nbsp;</p>
+        <ul>
+          <li>{check} Brand film 60–180s</li>
+          <li>{check} Spot TV / DOOH ready</li>
+          <li>{check} Direttore creativo dedicato</li>
+          <li>{check} Direzione fotografica on-set</li>
+          <li>{check} Licensing musicale custom</li>
+          <li>{check} Distribuzione &amp; media plan</li>
+        </ul>
+        <button class="btn btn-ghost" onclick="go('contatti')">Parla con il direttore</button>
+      </div>
+    </div>
+    <p class="price-note">IVA esclusa · Pagamento 50/50 · Contratto NDA standard incluso</p>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section id="processo" class="process">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">— 04 / Processo</p>
+        <h2>Dal bisturi al post: <em>quattro passi</em>.</h2>
+      </div>
+      <p>Un processo collaudato che riduce il tuo coinvolgimento al minimo indispensabile, senza sacrificare la qualità.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="sn">01</div><h3>Briefing strategico</h3><p>Ascoltiamo obiettivi clinici, target paziente e tono di voce. Definiamo KPI misurabili.</p></div>
+      <div class="step"><div class="sn">02</div><h3>Pre-produzione &amp; shotlist</h3><p>Storyboard, gestione consensi paziente, scouting location e music supervision.</p></div>
+      <div class="step"><div class="sn">03</div><h3>Montaggio cinematografico</h3><p>Editor senior dedicato. Color grading, sound design, motion typography editoriale.</p></div>
+      <div class="step"><div class="sn">04</div><h3>Consegna &amp; distribuzione</h3><p>Master + cutdown per ogni piattaforma. Linee guida di pubblicazione e A/B test.</p></div>
+    </div>
+    <div class="proc-foot">
+      <p>Tempo medio dal briefing alla consegna del primo asset: 7 giorni lavorativi.</p>
+      <button class="btn btn-gold" onclick="go('contatti')">Inizia il tuo progetto</button>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">— 05 / Voci dalle cliniche</p>
+        <h2>Cosa dicono i <em>camici bianchi</em>.</h2>
+      </div>
+    </div>
+    <div class="quotes">
+      <figure class="quote">
+        <div class="qm">"</div>
+        <blockquote>Hanno trasformato la mia clinica in un brand. Il primo brand film ha generato 38 nuovi consulti in tre settimane.</blockquote>
+        <div class="who"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=400&auto=format&fit=crop" alt="Dr.ssa Elena Russo"><div><b>Dr.ssa Elena Russo</b><span>Chirurgo plastico — Milano</span></div></div>
+      </figure>
+      <figure class="quote">
+        <div class="qm">"</div>
+        <blockquote>Finalmente un team che capisce la sensibilità del paziente. Niente sangue gratuito, niente cliché. Solo storytelling sofisticato.</blockquote>
+        <div class="who"><img src="https://images.unsplash.com/photo-1612349317150-e4d38b44422e?q=80&w=400&auto=format&fit=crop" alt="Dr. Marco Bianchi"><div><b>Dr. Marco Bianchi</b><span>Medico estetico — Roma</span></div></div>
+      </figure>
+      <figure class="quote">
+        <div class="qm">"</div>
+        <blockquote>Il ROI è chiaro: i nostri reel ora performano 5x rispetto a prima e abbiamo aumentato lo scontrino medio.</blockquote>
+        <div class="who"><img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?q=80&w=400&auto=format&fit=crop" alt="Studio Dentistico Aurum"><div><b>Studio Dentistico Aurum</b><span>Direzione marketing — Torino</span></div></div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:#fff;border-block:1px solid var(--s200)">
+  <div class="wrap">
+    <div class="faq-head">
+      <p class="eyebrow">— 06 / Domande</p>
+      <h2>Risposte <em>precise</em>, come un bisturi.</h2>
+      <p>Se la tua domanda non è qui sotto, scrivici direttamente: rispondiamo entro 24 ore lavorative.</p>
+    </div>
+    <div id="faq"></div>
+  </div>
+</section>
+
+<!-- CONTATTI -->
+<section id="contatti" class="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <p class="eyebrow">— 07 / Prenota</p>
+      <h2>Apri il consulto <em>creativo</em>.</h2>
+      <p class="intro">Raccontaci della tua clinica e degli obiettivi. Entro 24 ore ti inviamo una proposta editoriale personalizzata e fissiamo una call con il direttore creativo.</p>
+      <ul class="clist">
+        <li><svg class="ico" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 6l8 6 8-6"/></svg><a href="mailto:hello@lincfarma.com">hello@lincfarma.com</a></li>
+        <li><svg class="ico" viewBox="0 0 24 24"><path d="M5 4h4l2 5-3 2a14 14 0 006 6l2-3 5 2v4a2 2 0 01-2 2A17 17 0 013 6a2 2 0 012-2z"/></svg><a href="tel:+393500000000">+39 350 000 0000</a></li>
+        <li><svg class="ico" viewBox="0 0 24 24"><path d="M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Milano · Roma · da remoto</li>
+      </ul>
+      <div class="avail">
+        <p>Disponibilità Q2 2026</p>
+        <p>3 slot rimanenti per nuovi clienti.</p>
+      </div>
+    </div>
+    <form id="contactForm" onsubmit="submitForm(event)">
+      <div class="field"><label>Nome e cognome *</label><input required placeholder="Dr. / Dr.ssa" /></div>
+      <div class="field"><label>Email *</label><input type="email" required placeholder="email@clinica.it" /></div>
+      <div class="field"><label>Clinica / Studio</label><input placeholder="Nome della struttura" /></div>
+      <div class="field"><label>Specializzazione</label><input placeholder="Es. medicina estetica" /></div>
+      <div class="field"><label>Pacchetto di interesse</label>
+        <select><option>Starter</option><option selected>Pro</option><option>Elite</option><option>Non lo so ancora</option></select>
+      </div>
+      <div class="field"><label>Raccontaci il progetto *</label><textarea required placeholder="Obiettivi, target paziente, timeline..."></textarea></div>
+      <p class="priv">Inviando accetti la nostra informativa privacy e i protocolli di riservatezza clinica.</p>
+      <button type="submit" class="btn btn-dark">Invia richiesta
+        <svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <div class="form-ok" id="formOk">Grazie! Richiesta ricevuta. Ti rispondiamo entro 24 ore lavorative.</div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="logo">Linc<b>Farma</b></span>
+        <h3>Cinema clinico. Per chi cura.</h3>
+        <p>Studio indipendente di post-produzione video dedicato al settore medicale. Milano · Roma · Remoto in tutta Europa.</p>
+        <div class="news">
+          <p>Newsletter mensile</p>
+          <div class="row"><input placeholder="email@clinica.it" /><button>Iscrivimi</button></div>
+        </div>
+      </div>
+      <div class="foot-col">
+        <p class="t">Studio</p>
+        <ul>
+          <li><a onclick="go('studio')">Chi siamo</a></li>
+          <li><a onclick="go('lavori')">Lavori</a></li>
+          <li><a onclick="go('pacchetti')">Pacchetti</a></li>
+          <li><a onclick="go('processo')">Processo</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <p class="t">Settori</p>
+        <ul><li>Medicina estetica</li><li>Chirurgia plastica</li><li>Odontoiatria</li><li>Dermatologia</li></ul>
+      </div>
+      <div class="foot-col">
+        <p class="t">Contatto</p>
+        <ul><li>hello@lincfarma.com</li><li>+39 350 000 0000</li><li>Via Brera 7 · Milano</li></ul>
+        <div class="social">
+          <a href="#" aria-label="Instagram"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg class="ico" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 014 0v4"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 LincFarma — P.IVA 00000000000 — Tutti i diritti riservati.</p>
+      <div class="links"><a href="#">Privacy</a><a href="#">Cookie</a><a href="#">Termini</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function go(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+
+  // PORTFOLIO data
+  const port=[
+    {img:"1607990281513-2c110a25bd8c?q=80&w=1200",tag:"Reel · Instagram",t:"Clinica Estetica Milano — Reel campagna estiva"},
+    {img:"1631815589968-fdb09a223b1e?q=80&w=1000",tag:"Documentario · 90s",t:"Dr. Russo — Rinoplastica testimonial"},
+    {img:"1606811971618-4486d14f3f99?q=80&w=1000",tag:"Spot · 30s",t:"Studio Dentistico Aurum — Spot TV"},
+    {img:"1570172619644-dfd03ed5d881?q=80&w=1200",tag:"Brand film · 2:30",t:"Med Spa Roma — Brand film"},
+    {img:"1622253692010-333f2da6031d?q=80&w=1000",tag:"TikTok · 7 episodi",t:"Dr.ssa Bianchi — Serie educational"},
+    {img:"1559757175-5700dde675bc?q=80&w=1200",tag:"Reel · 60s",t:"Hair Clinic — Before/After cinematografico"}
+  ];
+  document.getElementById('port').innerHTML=port.map(p=>`
+    <article class="card">
+      <img src="https://images.unsplash.com/photo-${p.img}&auto=format&fit=crop" alt="${p.t}">
+      <span class="tag">${p.tag}</span>
+      <div class="meta"><h3>${p.t}</h3>
+        <span class="arr"><svg class="ico" viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
+    </article>`).join('');
+
+  // FAQ data
+  const faq=[
+    {q:"Lavorate solo con medici e cliniche?",a:"Sì, esclusivamente. Lavoriamo solo con professionisti e strutture del settore sanitario ed estetico-medicale. È la nostra unica specializzazione: ci permette di padroneggiare linguaggio, deontologia e sensibilità del settore."},
+    {q:"Come gestite la privacy dei pazienti?",a:"Con un workflow conforme al GDPR e alla deontologia medica: consensi informati firmati prima di ogni utilizzo, blur dinamico e anonimizzazione dove richiesto, archiviazione sicura del materiale e NDA standard incluso in ogni contratto."},
+    {q:"Riprendete voi i video o partite dal materiale del cliente?",a:"Entrambe le opzioni. Possiamo partire dal materiale girato in clinica e occuparci solo di montaggio e post-produzione, oppure gestire la produzione completa con direzione fotografica on-set (pacchetto Elite)."},
+    {q:"Quanto durano la consegna e le revisioni?",a:"Il primo asset arriva mediamente in 7 giorni lavorativi dal briefing. Le revisioni dipendono dal pacchetto: 1 round per lo Starter, illimitate per il Pro entro i tempi di consegna concordati."},
+    {q:"Posso pagare a rate?",a:"Sì. La formula standard è 50% all'avvio e 50% alla consegna. Per il pacchetto Pro è previsto un canone mensile; per l'Elite definiamo un piano di pagamento su misura."},
+    {q:"Esiste un periodo di prova?",a:"Il pacchetto Starter funziona di fatto come progetto pilota: un singolo deliverable a budget contenuto per valutare il nostro approccio prima di passare a una collaborazione continuativa."}
+  ];
+  document.getElementById('faq').innerHTML=faq.map(f=>`
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">${f.q}
+        <svg class="ico" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+      <div class="faq-a"><p>${f.a}</p></div>
+    </div>`).join('');
+  function toggleFaq(btn){
+    const item=btn.parentElement, ans=item.querySelector('.faq-a');
+    const open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight=null;});
+    if(!open){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px';}
+  }
+
+  // inject check icons in plans
+  document.querySelectorAll('.plan li').forEach(li=>{
+    li.innerHTML=li.innerHTML.replace('{check}','<svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>');
+  });
+
+  function submitForm(e){
+    e.preventDefault();
+    e.target.querySelectorAll('input,textarea,select,.priv,button').forEach(el=>{if(!el.classList.contains('form-ok'))el.style.display='none';});
+    document.getElementById('formOk').style.display='block';
+    setTimeout(postHeight,100);
+  }
+
+  // Auto-altezza quando incastrato in un iframe (es. Elementor)
+  function postHeight(){
+    try{parent.postMessage({bsHeight:document.documentElement.scrollHeight},'*');}catch(e){}
+  }
+  window.addEventListener('load',postHeight);
+  window.addEventListener('resize',postHeight);
+  if(window.ResizeObserver){new ResizeObserver(postHeight).observe(document.body);}
+</script>
+</body>
+</html>
