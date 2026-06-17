@@ -207,6 +207,11 @@
     .stats{gap:26px}
     .hero-card img{aspect-ratio:4/5}
   }
+  .cut{font-style:italic;font-weight:800;color:var(--ink);font-family:var(--serif)}
+  body.reveal-on .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  body.reveal-on .reveal.in{opacity:1;transform:none}
+  .feat,.card{transition:transform .25s ease,box-shadow .25s ease}
+  .feat:hover,.card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -24px rgba(10,17,40,.45)}
 </style>
 </head>
 <body>
@@ -234,7 +239,7 @@
   <div class="wrap hero-grid">
     <div>
       <p class="eyebrow">Video editing · Medicina estetica · Chirurgia</p>
-      <h1>Il bisturi è tuo.<br>Il <em>taglio</em> cinematografico<br><em>è il mio.</em></h1>
+      <h1>Il bisturi è tuo.<br>Il <i class="cut">taglio</i> cinematografico<br><em>è il mio.</em></h1>
       <p class="lead">Studio di post-produzione dedicato a medici estetici, chirurghi e cliniche d'eccellenza. Trasformo le tue procedure in narrazioni visive che convertono pazienti, non semplici clip.</p>
       <div class="hero-cta">
         <button class="btn btn-dark" onclick="go('pacchetti')">Vedi i pacchetti
@@ -591,6 +596,17 @@
   window.addEventListener('load',postHeight);
   window.addEventListener('resize',postHeight);
   if(window.ResizeObserver){new ResizeObserver(postHeight).observe(document.body);}
+  // mini animazioni: reveal in dissolvenza allo scroll
+  (function(){
+    document.body.classList.add('reveal-on');
+    var sel='.hero-grid>div,.sec-head,.feat,.card,.plan,.step,.quote,.faq-item,.cert,.proc-foot,.port-foot,form,.avail';
+    var els=document.querySelectorAll(sel);
+    els.forEach(function(el,i){el.classList.add('reveal');el.style.transitionDelay=((i%6)*60)+'ms';});
+    if(window.IntersectionObserver){
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
+      els.forEach(function(el){io.observe(el);});
+    } else { els.forEach(function(el){el.classList.add('in');}); }
+  })();
 </script>
 </body>
 </html>
